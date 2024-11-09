@@ -11,6 +11,7 @@ class MockEmailRepository implements IEmailRepository {
 }
 
 describe("ValidateEmailUseCase", () => {
+    
     it("should return true for a temporary email", async () => {
         const repository = new MockEmailRepository();
         const useCase = new ValidateEmailUseCase(repository);

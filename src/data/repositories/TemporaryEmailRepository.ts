@@ -1,18 +1,22 @@
 import { IEmailRepository } from "../../core/interfaces/IEmailRepository";
-import axios from "axios";
-
+import fs from "fs";
+import path from "path";
 export class TemporaryEmailRepository implements IEmailRepository {
-    private temporaryDomains: Set<string> = new Set();
+    private temporaryEmailDomains: string[];
 
-    constructor(private apiUrl: string) { }
+    constructor() { 
+        this.temporaryEmailDomains = [];
+        this.loadTemporaryEmailDomains();
+    }
 
-    async fetchTemporaryDomains(): Promise<void> {
-        const response = await axios.get(this.apiUrl);
-        this.temporaryDomains = new Set(response.data);
+    private loadTemporaryEmailDomains() {
+        const filePath = path.join(__dirname, "../", "temporaryEmailDomains.json");
+        const rawData = fs.readFileSync(filePath, "utf-8");
+        this.temporaryEmailDomains = JSON.parse(rawData);
     }
 
     async isTemporaryEmail(email: string): Promise<boolean> {
         const domain = email.split("@")[1];
-        return this.temporaryDomains.has(domain);
+        return this.temporaryEmailDomains.includes(domain);
     }
 }

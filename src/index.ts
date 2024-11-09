@@ -1,11 +1,9 @@
-import { TemporaryEmailRepository } from "./data/repositories/TemporaryEmailRepository";
 import { ValidateEmailUseCase } from "./core/usecases/ValidateEmailUseCase";
+import { TemporaryEmailRepository } from "./data/repositories/TemporaryEmailRepository";
 
-const apiUrl = "https://api.temporary-email-provider.com/domains";
-const repository = new TemporaryEmailRepository(apiUrl);
+const repository = new TemporaryEmailRepository();
 const useCase = new ValidateEmailUseCase(repository);
 
 export async function validateEmail(email: string): Promise<boolean> {
-    await repository.fetchTemporaryDomains();
     return useCase.execute(email);
 }
