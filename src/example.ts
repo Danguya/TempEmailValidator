@@ -5,7 +5,8 @@ async function runExample() {
         "test@tempmail.com",
         "user@10minutemail.com",
         "test@gmail.com",
-        "hello@yahoo.com"
+        "hello@yahoo.com",
+        "kzrrchhjkdptagzwdd@hthlm.com",
     ];
 
     for (const email of testEmails) {

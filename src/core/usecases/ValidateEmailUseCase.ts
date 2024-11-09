@@ -1,9 +1,13 @@
 import { IEmailRepository } from "../interfaces/IEmailRepository";
 
 export class ValidateEmailUseCase {
-    constructor(private emailRepository: IEmailRepository) { }
+    private repository: IEmailRepository;
+
+    constructor(repository: IEmailRepository) {
+        this.repository = repository;
+    }
 
     async execute(email: string): Promise<boolean> {
-        return this.emailRepository.isTemporaryEmail(email);
+        return await this.repository.isTemporaryEmail(email);
     }
 }

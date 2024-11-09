@@ -1,16 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
+    "module": "commonjs",
+    "outDir": "./dist",
     "strict": true,
-    "jsx": "react",
-    
+    "esModuleInterop": true
   },
-  "include": [
-    "src/**/*.ts",
-    "test/**/*.ts"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
