@@ -8,6 +8,9 @@ async function runExample() {
         "hello@yahoo.com",
         "neporiy127@inikale.com",
         "kzrrchhjkdptagzwdd@hthlm.com",
+        "excrevkkptjylysnjg@ytnhy.com",
+        "mosares500@cironex.com",
+        "mepofem490@opposir.com"
     ];
 
     for (const email of testEmails) {
