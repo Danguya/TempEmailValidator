@@ -2,6 +2,8 @@
   "name": "tempemailvalidator",
   "version": "2.1.1",
   "description": "A Node.js package to validate temporary and disposable email addresses, helping to prevent fake registrations and spam.",
+  "main": "dist/index.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "example": "ts-node src/example.ts"
