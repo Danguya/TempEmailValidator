@@ -3,7 +3,7 @@
   "version": "2.1.3",
   "description": "A Node.js package to validate temporary and disposable email addresses, helping to prevent fake registrations and spam.",
   "main": "src/index.js",
-  "types": "index.d.ts",
+  "types": "src/index.d.ts",
   "type": "module",
   "scripts": {
     "example": "node src/example.js"
