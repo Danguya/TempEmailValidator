@@ -22,9 +22,13 @@ export class TemporaryEmailRepository implements IEmailRepository {
         return new Promise((resolve) => {
             dns.resolveMx(domain, (err, addresses) => {
                 if (err) {
+                    console.error(`Erro ao resolver MX para o domínio ${domain}:`, err.message);
                     resolve([]);
+                } else if (addresses && addresses.length > 0) {
+                    resolve(addresses.map((record) => record.exchange));
                 } else {
-                    resolve(addresses.map(record => record.exchange));
+                    console.warn(`Nenhum registro MX encontrado para o domínio ${domain}.`);
+                    resolve([]);
                 }
             });
         });
@@ -32,16 +36,26 @@ export class TemporaryEmailRepository implements IEmailRepository {
 
     async isTemporaryEmail(email: string): Promise<boolean> {
         const domain = email.split("@")[1];
+        console.log(`Verificando o domínio: ${domain}`);
 
+        // Verifica se o domínio está na lista de domínios temporários
         if (this.temporaryEmailDomains.has(domain)) {
             return true;
         }
 
+        // Tenta resolver os registros MX
         const mxRecords = await this.getMxRecords(domain);
-        return mxRecords.some((mx) =>
-            Array.from(this.temporaryEmailDomains).some((tempDomain) =>
-                mx.includes(tempDomain)
-            )
-        );
+
+        // Verifica se algum registro MX corresponde a um domínio temporário conhecido
+        if (mxRecords.length > 0) {
+            return mxRecords.some((mx) =>
+                Array.from(this.temporaryEmailDomains).some((tempDomain) =>
+                    mx.includes(tempDomain)
+                )
+            );
+        } else {
+            // Considera como temporário se não houver registros MX
+            return true;
+        }
     }
 }
