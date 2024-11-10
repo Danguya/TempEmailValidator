@@ -30,14 +30,11 @@ Basic Example
 Once the package is installed, you can start using it to validate temporary emails. Here is a basic example:
 
 ```js
-const TempEmailValidator = require('tempemailvalidator');
-
-// Create an instance of the validator
-const validator = new TempEmailValidator();
+import { isTemporaryEmail } from 'tempemailvalidator';
 
 // Check if an email is temporary
 async function checkEmail(email) {
-  const isTemporary = await validator.isTemporaryEmail(email);
+  const isTemporary = await isTemporaryEmail(email);
   if (isTemporary) {
     console.log(`${email} is a temporary email.`);
   } else {
@@ -46,6 +43,7 @@ async function checkEmail(email) {
 }
 
 checkEmail('example@tempmail.com');
+
 ```
 
 ## Parameters
