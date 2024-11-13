@@ -82,5 +82,5 @@ If you'd like to help improve this project, please follow these steps:
 If you encounter a bug, please open an issue in the repository with a detailed description of the issue, including examples and error messages.
 
 License
-This project is licensed under the ISC License.
+This project is licensed under the MIT License.
 
